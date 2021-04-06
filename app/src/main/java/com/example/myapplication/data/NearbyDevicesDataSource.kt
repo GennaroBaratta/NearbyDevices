@@ -11,18 +11,19 @@ class NearbyDevicesDataSource(
     private val nearbyDevicesApi: NearbyDevicesApi,
     private val refreshIntervalMs: Long = 6000
 ) {
-    val nearbyDevices: Flow<State> = flow {
-        while (true) {
+    val nearbyDevices: Flow<DataState> = flow {
+        //while (true) {
             val nearbyDevices = nearbyDevicesApi.fetchNearbyDevices()
-            emit(State.Success(nearbyDevices))
+            emit(DataState.Success(nearbyDevices))
             delay(refreshIntervalMs)
-        }
+        //}
     }
         .flowOn(IO)
 
-    sealed class State {
-        object InProgress : State()
-        data class Success(val devices: List<NearbyDevice>) : State()
-        data class Error(val exception: Exception) : State()
+
+    sealed class DataState {
+        object InProgress : DataState()
+        data class Success(val devices: List<NearbyDevice>) : DataState()
+        data class Error(val exception: Exception) : DataState()
     }
 }

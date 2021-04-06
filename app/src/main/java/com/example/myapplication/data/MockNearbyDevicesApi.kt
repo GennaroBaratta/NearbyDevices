@@ -4,14 +4,17 @@ import kotlinx.coroutines.delay
 import timber.log.Timber
 
 class MockNearbyDevicesApi : NearbyDevicesApi {
-    val list: List<NearbyDevice> = listOf(
-        NearbyDevice(0L), NearbyDevice(1L), NearbyDevice(3L),
-        NearbyDevice(4L)
-    )
+    private val list: List<NearbyDevice> = (1..100).map {
+        NearbyDevice(it.toLong())
+    }
 
     override suspend fun fetchNearbyDevices(): List<NearbyDevice> {
         //delay(3000)
         Timber.d("New devices fetched!")
+        return list.shuffled()
+    }
+
+    fun fetchNearbyDevicesNotSus(): List<NearbyDevice> {
         return list.shuffled()
     }
 }

@@ -10,17 +10,17 @@ class NearbyDevicesRepository(
     private val userData: UserData,
     defaultDispatcher: CoroutineDispatcher
 ) {
-    val nearbyDevices: Flow<NearbyDevicesDataSource.State> =
+    val nearbyDevices: Flow<NearbyDevicesDataSource.DataState> =
         nearbyDevicesDataSource.nearbyDevices
             .flowOn(defaultDispatcher)
 
     val friendNearbyDevices = nearbyDevices
         .map { state ->
             when (state) {
-                is NearbyDevicesDataSource.State.Success ->
+                is NearbyDevicesDataSource.DataState.Success ->
                     state.devices.filter { userData.isFriend(it) }
-                is NearbyDevicesDataSource.State.Error -> TODO()
-                NearbyDevicesDataSource.State.InProgress -> TODO()
+                is NearbyDevicesDataSource.DataState.Error -> TODO()
+                NearbyDevicesDataSource.DataState.InProgress -> TODO()
             }
         }
         .flowOn(defaultDispatcher)

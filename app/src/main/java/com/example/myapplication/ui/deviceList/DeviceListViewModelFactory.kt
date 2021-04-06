@@ -1,18 +1,15 @@
-package com.example.myapplication.presenter
+package com.example.myapplication.ui.deviceList
 
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.data.NearbyDevicesRepository
-import kotlinx.coroutines.CoroutineScope
 
-
-class NearbyDevicesViewModelFactory(
+class DeviceListViewModelFactory(
     private val nearbyDevicesRepository: NearbyDevicesRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(NearbyDevicesViewModel::class.java)) {
-            return NearbyDevicesViewModel(nearbyDevicesRepository) as T
+        if (modelClass.isAssignableFrom(DeviceListViewModel::class.java)) {
+            return DeviceListViewModel(nearbyDevicesRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
