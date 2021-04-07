@@ -13,10 +13,13 @@ import androidx.compose.material.Surface
 import androidx.core.content.ContextCompat
 import com.example.myapplication.ui.deviceList.DeviceListScreen
 import com.example.myapplication.ui.theme.MyApplicationTheme
+import com.google.android.gms.nearby.Nearby
+import com.google.android.gms.nearby.connection.*
 import timber.log.Timber
 
 
 class MainActivity : ComponentActivity() {
+
     // Register the permissions callback, which handles the user's response to the
     // system permissions dialog. Save the return value, an instance of
     // ActivityResultLauncher. You can use either a val, as shown in this snippet,
@@ -75,6 +78,8 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+
 }
 
 /*

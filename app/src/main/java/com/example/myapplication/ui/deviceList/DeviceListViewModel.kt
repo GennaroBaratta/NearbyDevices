@@ -1,21 +1,30 @@
 package com.example.myapplication.ui.deviceList
 
-import android.Manifest
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.data.NearbyDevice
 import com.example.myapplication.data.NearbyDevicesDataSource
 import com.example.myapplication.data.NearbyDevicesRepository
+import com.google.android.gms.nearby.Nearby
+import com.google.android.gms.nearby.connection.AdvertisingOptions
+import com.google.android.gms.nearby.connection.Strategy
+import com.google.android.material.circularreveal.CircularRevealHelper
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeout
 import timber.log.Timber
+import com.google.android.material.circularreveal.CircularRevealHelper.STRATEGY
+import com.google.android.material.circularreveal.CircularRevealHelper.STRATEGY
+
+import com.google.android.gms.nearby.connection.DiscoveryOptions
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+
 
 class DeviceListViewModel(private val nearbyDevicesRepository: NearbyDevicesRepository) :
     ViewModel() {
@@ -65,4 +74,6 @@ class DeviceListViewModel(private val nearbyDevicesRepository: NearbyDevicesRepo
             }
             .launchIn(viewModelScope)
     }
+
+
 }
